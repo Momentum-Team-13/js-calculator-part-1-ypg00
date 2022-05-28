@@ -1,7 +1,8 @@
+let equation = '';
+
 document.getElementById('calculator').addEventListener('click', (event) => {
   const display = document.getElementById('display');
-  const input = event.target.textContent;
-
+  const input = event.target.innerHTML;
   switch (input) {
     case '0':
     case '1':
@@ -18,15 +19,28 @@ document.getElementById('calculator').addEventListener('click', (event) => {
     case '-':
     case '/':
       display.textContent += input;
+      equation += input;
+      console.log(equation);
       break;
     case 'x':
       display.textContent += '*';
+      equation += '*';
+      console.log(equation);
       break;
     case 'C':
       display.textContent = '';
+      equation = '';
+      console.log(equation);
       break;
     case '=':
-      display.textContent = eval(display.textContent);
+      display.textContent = eval(
+        equation
+      );
+      console.log(equation);
       break;
+
+    // default:
+    //   display.textContent += input;
+    //   break;
   }
 });
