@@ -1,20 +1,15 @@
-.calculator {
+#calculator {
     height: 500px;
     width: 400px;
     margin: 0px;
+    margin-left: 150px;
+    margin-top: 150px;
     background-color: black;
     display: flex;
     flex-wrap: wrap;
 }
 
-.button {
-    height:100px;
-    width: 100px;
-    margin: 0px;
-    /* padding: 50px; */
-}
-
-.display {
+#display {
     height: 100px;
     width: 300px;
     margin: 0px;
@@ -25,18 +20,13 @@
 
 }
 
-.number {
-
+.button {
+    height: 100px;
+    width: 100px;
+    margin: 0px;
+    /* padding: 50px; */
 }
 
-.operand {
+.number {}
 
-}
-
-.highlight {
-    background-color: yellow;
-}
-
-.unhighlight {
-    background-color: ;
-}
+.operator {}
