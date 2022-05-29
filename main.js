@@ -1,8 +1,9 @@
+// String to store user input, prior to "C" or "="
 let equation = '';
 
 document.getElementById('calculator').addEventListener('click', (event) => {
   const display = document.getElementById('display');
-  const input = event.target.innerHTML;
+  const input = event.target.textContent;
   switch (input) {
     case '0':
     case '1':
@@ -38,9 +39,5 @@ document.getElementById('calculator').addEventListener('click', (event) => {
       );
       console.log(equation);
       break;
-
-    // default:
-    //   display.textContent += input;
-    //   break;
   }
 });
