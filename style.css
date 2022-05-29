@@ -1,5 +1,5 @@
 #calculator {
-    height: 500px;
+    height: 600px;
     width: 400px;
     margin: 0px;
     margin-left: 150px;
@@ -7,25 +7,42 @@
     background-color: black;
     display: flex;
     flex-wrap: wrap;
+    font-family: 'Share Tech Mono', monospace;
 }
 
 #display {
     height: 100px;
-    width: 300px;
+    width: 400px;
     margin: 0px;
     border: solid;
     border-color: gray;
     background-color: azure;
     box-sizing: border-box;
+    font-size: 50pt;
+    text-align: right;
+    padding-top: 10px;
+    padding-right: 15px;
+
 }
 
 .button {
     height: 100px;
     width: 100px;
     margin: 0px;
-    /* padding: 50px; */
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 20pt;
 }
 
-.number {}
+#equals {
+    height: 100px;
+    width: 200px;
+    margin: 0px;
+}
 
-.operator {}
+.number {
+    /* font-size: 20pt; */
+}
+
+.operator {
+    /* font-size: 18pt; */
+}

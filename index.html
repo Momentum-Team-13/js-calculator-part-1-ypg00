@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
     <title>JS Calculator</title>
@@ -12,24 +15,26 @@
 
 <body>
     <div id="calculator">
-        <button class="button operator">C</button>
         <div id="display"></div>
+        <button class="button operator" id="C">C</button>
+        <button class="button operator">Del</button>
+        <button class="button operator">+/-</button>
+        <button class="button operator">/</button>
         <button class="button number">7</button>
         <button class="button number">8</button>
         <button class="button number">9</button>
-        <button class="button operator">/</button>
+        <button class="button operator">x</button>
         <button class="button number">4</button>
         <button class="button number">5</button>
         <button class="button number">6</button>
-        <button class="button operator">x</button>
+        <button class="button operator">-</button>
         <button class="button number">1</button>
         <button class="button number">2</button>
         <button class="button number">3</button>
-        <button class="button operator">-</button>
+        <button class="button operator">+</button>
         <button class="button number">0</button>
         <button class="button number">.</button>
-        <button class="button equals">=</button>
-        <button class="button operator">+</button>
+        <button class="button operator" id="equals">=</button>
     </div>
 </body>
 
