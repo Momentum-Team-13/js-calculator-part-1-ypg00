@@ -5,8 +5,6 @@
     margin-left: 150px;
     margin-top: 150px;
     background-color: black;
-    display: flex;
-    flex-wrap: wrap;
     font-family: 'Share Tech Mono', monospace;
 }
 
@@ -16,13 +14,19 @@
     margin: 0px;
     border: solid;
     border-color: gray;
-    background-color: azure;
+    background-color: rgb(47, 139, 139);
     box-sizing: border-box;
     font-size: 50pt;
     text-align: right;
     padding-top: 10px;
     padding-right: 15px;
 
+}
+
+#buttons {
+    margin: 0px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .button {

@@ -2,27 +2,12 @@
 let equation = '';
 let i = 1;
 
-document.getElementById('calculator').addEventListener('click', (event) => {
+document.getElementById('buttons').addEventListener('click', (event) => {
   const display = document.getElementById('display');
   let input = event.target.innerHTML;
+  
   switch (input) {
 
-    // Numbers
-    case '0':
-    case '1':
-    case '2':
-    case '3':
-    case '4':
-    case '5':
-    case '6':
-    case '7':
-    case '8':
-    case '9':
-      equation += input;
-      display.textContent += input;
-      console.log(`equation: ${equation}; typeof: ${typeof equation}`);
-      break;
-    
     // Decimals
     case '.':
       const dot = /\./;
@@ -79,11 +64,26 @@ document.getElementById('calculator').addEventListener('click', (event) => {
 
     // Evaluations
     case '=':
-      equation = eval(
+      equation = `${eval(
         equation
-      );
+      )}`;
       display.textContent = equation;
+      console.log(`equation: ${equation}; typeof: ${typeof equation}`);
+      break;
+    
+    // Numbers
+    default:
+      equation += input;
+      display.textContent += input;
       console.log(`equation: ${equation}; typeof: ${typeof equation}`);
       break;
   }
 });
+
+/* Documentation
+
+.replace() - https://www.w3schools.com/jsref/jsref_replace.asp
+g "flag" or "modifier" - https://www.w3schools.com/jsref/jsref_regexp_g.asp
+.test() - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test
+
+*/
