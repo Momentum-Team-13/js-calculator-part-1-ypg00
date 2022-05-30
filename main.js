@@ -1,6 +1,6 @@
 // String to store user input, prior to "C" or "="
-let equation = '';
-let i = 1;
+let equation = ['', '', ''];
+let i = 0;
 
 document.getElementById('buttons').addEventListener('click', (event) => {
   const display = document.getElementById('display');
@@ -11,18 +11,18 @@ document.getElementById('buttons').addEventListener('click', (event) => {
     // Decimals
     case '.':
       const dot = /\./;
-      if (equation.length === 0) {
-        equation = '0.';
+      if (equation[i].length === 0) {
+        equation[i] = '0.';
         display.textContent = '0.';
-        console.log(`equation: ${equation}; typeof: ${typeof equation}`);
+        console.log(`equation: ${equation}`);
         break;
       } else if (dot.test(equation)) {
-        console.log(`equation: ${equation}; typeof: ${typeof equation}`);
+        console.log(`equation: ${equation}`);
         break;
       } else {
-        equation += input;
+        equation[i] += input;
         display.textContent += input;
-        console.log(`equation: ${equation}; typeof: ${typeof equation}`);
+        console.log(`equation: ${equation}`);
         break;
       }
     
@@ -31,47 +31,52 @@ document.getElementById('buttons').addEventListener('click', (event) => {
     case 'x':
     case '-':
     case '+':
-      equation += input.replace(/x/g, '*');
-      display.textContent += input.replace(/x/g, '*') ;
-      console.log(`equation: ${equation}; typeof: ${typeof equation}`);
+      equation[1] = input.replace(/x/g, '*');
+      display.textContent = '';
+      i = 2;
+      equation[2] = '';
+      console.log(`equation: ${equation}`);
       break;
     case '+/-':
-      if (equation[0] === '-') {
-        equation = equation.slice(1);
-        display.textContent = equation;
-        console.log(`equation: ${equation}; typeof: ${typeof equation}`);
+      if (equation[i][0] === '-') {
+        equation[i] = equation[i][0].slice(1);
+        display.textContent = equation[i];
+        console.log(`equation: ${equation}`);
         break;
       } else {
-        equation = '-' + equation;
-        display.textContent = equation;
-        console.log(`equation: ${equation}; typeof: ${typeof equation}`);
+        equation[i][0] = `'-${equation[i]}'`;
+        display.textContent = equation[i];
+        console.log(`equation: ${equation}`);
         break;
       }
     case 'Del':
-      equation = equation.substring(0, equation.length - 1);
-      display.textContent = equation;
-      console.log(`equation: ${equation}; typeof: ${typeof equation}`);
+      equation[i] = equation[i].substring(0, equation[i].length - 1);
+      display.textContent = equation[i];
+      console.log(`equation: ${equation}`);
       break;
     case 'C':
-      equation = '';
-      display.textContent = equation;
-      console.log(`equation: ${equation}; typeof: ${typeof equation}`);
+      equation = ['', '', ''];
+      display.textContent = '';
+      i = 0;
+      console.log(`equation: ${equation}`);
       break;
 
     // Evaluations
     case '=':
-      equation = `${eval(
-        equation
-      )}`;
-      display.textContent = equation;
-      console.log(`equation: ${equation}; typeof: ${typeof equation}`);
+      let strEquation = `(${equation[0]})${equation[1]}(${equation[2]})`;
+      console.log(`strEquation = ${strEquation}`);
+      equation[0] = eval(strEquation);
+      display.textContent = equation[0];
+      console.log(`i = ${i}`);
+      i = 0;
+      console.log(`equation: ${equation}`);
       break;
     
     // Numbers
     default:
-      equation += input;
-      display.textContent += input;
-      console.log(`equation: ${equation}; typeof: ${typeof equation}`);
+      equation[i] += input;
+      display.textContent = equation[i];
+      console.log(`equation: ${equation}`);
       break;
   
   }
