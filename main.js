@@ -1,28 +1,39 @@
-// String to store user input, prior to "C" or "="
+// Stores values as strings for computations: num, operator, num
 let equation = ['', '', ''];
+// Variable to track where in the computation to insert inputs
 let i = 0;
 
 document.getElementById('buttons').addEventListener('click', (event) => {
   const display = document.getElementById('display');
-  let input = event.target.innerHTML;
+  const input = event.target.innerHTML;
   
   switch (input) {
-
+    
+    // Numbers
+    default:
+      equation[i] += input;
+      display.textContent = equation[i];
+      if (i === 0 && equation[2]) {
+        equation[1] = '';
+        equation[2] = '';
+      }
+      console.log(`equation: ${equation}`);
+      break;
+    
     // Decimals
     case '.':
-      const dot = /\./;
+      const decimal = /\./;
       if (equation[i].length === 0) {
         equation[i] = '0.';
-        display.textContent = '0.';
+        display.textContent = equation[i];
         console.log(`equation: ${equation}`);
         break;
-      } else if (dot.test(equation[i])) {
+      } else if (decimal.test(equation[i]) === false) {
+        equation[i] += input;
+        display.textContent = equation[i];
         console.log(`equation: ${equation}`);
         break;
       } else {
-        equation[i] += input;
-        display.textContent += input;
-        console.log(`equation: ${equation}`);
         break;
       }
     
@@ -32,31 +43,31 @@ document.getElementById('buttons').addEventListener('click', (event) => {
     case '-':
     case '+':
       equation[1] = input.replace(/x/g, '*');
-      display.textContent = '';
+      display.textContent = equation[1];
       i = 2;
       equation[2] = '';
       console.log(`equation: ${equation}`);
       break;
+    
+    // Toggle positive or negative values
     case '+/-':
+      if (i === 0 && equation[2]) {
+        equation[1] = '';
+        equation[2] = '';
+      }
       if (equation[i][0] === '-') {
         equation[i] = equation[i].slice(1);
         display.textContent = equation[i];
-          if (i === 0 && equation[2]) {
-            equation[1] = '';
-            equation[2] = '';
-          }
         console.log(`equation: ${equation}`);
         break;
       } else {
         equation[i] = `-${equation[i]}`;
         display.textContent = equation[i];
-          if (i === 0 && equation[2]) {
-            equation[1] = '';
-            equation[2] = '';
-          }
         console.log(`equation: ${equation}`);
         break;
       }
+    
+    // Delete last input value
     case 'Del':
       equation[i] = equation[i].substring(0, equation[i].length - 1);
       display.textContent = equation[i];
@@ -66,6 +77,8 @@ document.getElementById('buttons').addEventListener('click', (event) => {
       }
       console.log(`equation: ${equation}`);
       break;
+    
+    // Clear everything
     case 'C':
       equation = ['', '', ''];
       display.textContent = '';
@@ -84,17 +97,6 @@ document.getElementById('buttons').addEventListener('click', (event) => {
       console.log(`equation: ${equation}, and typeof: ${typeof equation[0]}`);
       break;
     
-    // Numbers
-    default:
-      equation[i] += input;
-      display.textContent = equation[i];
-      if (i === 0 && equation[2]) {
-        equation[1] = '';
-        equation[2] = '';
-      }
-      console.log(`equation: ${equation}`);
-      break;
-  
   }
 });
 
