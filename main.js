@@ -12,7 +12,7 @@ document.getElementById('buttons').addEventListener('click', (event) => {
     case '.':
       const dot = /\./;
       if (equation.length === 0) {
-        equation += '0.';
+        equation = '0.';
         display.textContent = '0.';
         console.log(`equation: ${equation}; typeof: ${typeof equation}`);
         break;
@@ -27,16 +27,12 @@ document.getElementById('buttons').addEventListener('click', (event) => {
       }
     
     // Operators
-    case '+':
-    case '-':
     case '/':
-      equation += input;
-      display.textContent += input;
-      console.log(`equation: ${equation}; typeof: ${typeof equation}`);
-      break;
     case 'x':
-      equation += '*';
-      display.textContent += '*';
+    case '-':
+    case '+':
+      equation += input.replace(/x/g, '*');
+      display.textContent += input.replace(/x/g, '*') ;
       console.log(`equation: ${equation}; typeof: ${typeof equation}`);
       break;
     case '+/-':
@@ -46,7 +42,7 @@ document.getElementById('buttons').addEventListener('click', (event) => {
         console.log(`equation: ${equation}; typeof: ${typeof equation}`);
         break;
       } else {
-        equation = "-" + equation;
+        equation = '-' + equation;
         display.textContent = equation;
         console.log(`equation: ${equation}; typeof: ${typeof equation}`);
         break;
@@ -77,6 +73,7 @@ document.getElementById('buttons').addEventListener('click', (event) => {
       display.textContent += input;
       console.log(`equation: ${equation}; typeof: ${typeof equation}`);
       break;
+  
   }
 });
 
