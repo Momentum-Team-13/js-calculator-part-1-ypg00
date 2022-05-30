@@ -16,7 +16,7 @@ document.getElementById('buttons').addEventListener('click', (event) => {
         display.textContent = '0.';
         console.log(`equation: ${equation}`);
         break;
-      } else if (dot.test(equation)) {
+      } else if (dot.test(equation[i])) {
         console.log(`equation: ${equation}`);
         break;
       } else {
@@ -39,19 +39,31 @@ document.getElementById('buttons').addEventListener('click', (event) => {
       break;
     case '+/-':
       if (equation[i][0] === '-') {
-        equation[i] = equation[i][0].slice(1);
+        equation[i] = equation[i].slice(1);
         display.textContent = equation[i];
+          if (i === 0 && equation[2]) {
+            equation[1] = '';
+            equation[2] = '';
+          }
         console.log(`equation: ${equation}`);
         break;
       } else {
-        equation[i][0] = `'-${equation[i]}'`;
+        equation[i] = `-${equation[i]}`;
         display.textContent = equation[i];
+          if (i === 0 && equation[2]) {
+            equation[1] = '';
+            equation[2] = '';
+          }
         console.log(`equation: ${equation}`);
         break;
       }
     case 'Del':
       equation[i] = equation[i].substring(0, equation[i].length - 1);
       display.textContent = equation[i];
+      if (i === 0 && equation[2]) {
+        equation[1] = '';
+        equation[2] = '';
+      }
       console.log(`equation: ${equation}`);
       break;
     case 'C':
@@ -65,17 +77,21 @@ document.getElementById('buttons').addEventListener('click', (event) => {
     case '=':
       let strEquation = `(${equation[0]})${equation[1]}(${equation[2]})`;
       console.log(`strEquation = ${strEquation}`);
-      equation[0] = eval(strEquation);
+      equation[0] = `${eval(strEquation)}`;
       display.textContent = equation[0];
       console.log(`i = ${i}`);
       i = 0;
-      console.log(`equation: ${equation}`);
+      console.log(`equation: ${equation}, and typeof: ${typeof equation[0]}`);
       break;
     
     // Numbers
     default:
       equation[i] += input;
       display.textContent = equation[i];
+      if (i === 0 && equation[2]) {
+        equation[1] = '';
+        equation[2] = '';
+      }
       console.log(`equation: ${equation}`);
       break;
   
