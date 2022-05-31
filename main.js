@@ -3,9 +3,9 @@ let equation = ['', '', ''];
 // Variable to track where in the computation to insert inputs
 let i = 0;
 
-document.getElementById('buttons').addEventListener('click', (event) => {
+document.getElementById('buttons').addEventListener('click', (e) => {
   const display = document.getElementById('display');
-  const input = event.target.innerHTML;
+  const input = e.target.innerHTML;
   
   switch (input) {
     
@@ -13,10 +13,7 @@ document.getElementById('buttons').addEventListener('click', (event) => {
     default:
       equation[i] += input;
       display.textContent = equation[i];
-      if (i === 0 && equation[2]) {
-        equation[1] = '';
-        equation[2] = '';
-      }
+      scrubEquation();
       console.log(`equation: ${equation}`);
       break;
     
@@ -51,10 +48,7 @@ document.getElementById('buttons').addEventListener('click', (event) => {
     
     // Toggle positive or negative values
     case '+/-':
-      if (i === 0 && equation[2]) {
-        equation[1] = '';
-        equation[2] = '';
-      }
+      scrubEquation();
       if (equation[i][0] === '-') {
         equation[i] = equation[i].slice(1);
         display.textContent = equation[i];
@@ -71,10 +65,7 @@ document.getElementById('buttons').addEventListener('click', (event) => {
     case 'Del':
       equation[i] = equation[i].substring(0, equation[i].length - 1);
       display.textContent = equation[i];
-      if (i === 0 && equation[2]) {
-        equation[1] = '';
-        equation[2] = '';
-      }
+      scrubEquation();
       console.log(`equation: ${equation}`);
       break;
     
@@ -100,10 +91,10 @@ document.getElementById('buttons').addEventListener('click', (event) => {
   }
 });
 
-/* Documentation
-
-.replace() - https://www.w3schools.com/jsref/jsref_replace.asp
-g "flag" or "modifier" - https://www.w3schools.com/jsref/jsref_regexp_g.asp
-.test() - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test
-
-*/
+// Function that clears the equation array of operator and the second operand
+function scrubEquation() {
+  if (i === 0 && equation[2]) {
+    equation[1] = '';
+    equation[2] = '';
+  }
+}
