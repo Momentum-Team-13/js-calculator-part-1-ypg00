@@ -98,8 +98,13 @@ function scrubEquation() {
     equation[2] = '';
   }
 }
-
-// Logs equation
+// Console logs equation array
 function log() {
   console.log(`equation: ${equation}`);
 }
+
+/* Features to work on:
+1. Limit the display so text does not run off
+2. Replace eval() with math.js library
+3. Introduce new operators: e.g. remainder, exponents, parentheses
+*/
