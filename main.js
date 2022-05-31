@@ -11,10 +11,10 @@ document.getElementById('buttons').addEventListener('click', (e) => {
     
     // Numbers
     default:
+      scrubEquation();
       equation[i] += input;
       display.textContent = equation[i];
-      scrubEquation();
-      console.log(`equation: ${equation}`);
+      log();
       break;
     
     // Decimals
@@ -23,12 +23,12 @@ document.getElementById('buttons').addEventListener('click', (e) => {
       if (equation[i].length === 0) {
         equation[i] = '0.';
         display.textContent = equation[i];
-        console.log(`equation: ${equation}`);
+        log();
         break;
       } else if (decimal.test(equation[i]) === false) {
         equation[i] += input;
         display.textContent = equation[i];
-        console.log(`equation: ${equation}`);
+        log();
         break;
       } else {
         break;
@@ -39,11 +39,11 @@ document.getElementById('buttons').addEventListener('click', (e) => {
     case 'x':
     case '-':
     case '+':
+      scrubEquation();
       equation[1] = input.replace(/x/g, '*');
       display.textContent = equation[1];
       i = 2;
-      equation[2] = '';
-      console.log(`equation: ${equation}`);
+      log();
       break;
     
     // Toggle positive or negative values
@@ -52,21 +52,21 @@ document.getElementById('buttons').addEventListener('click', (e) => {
       if (equation[i][0] === '-') {
         equation[i] = equation[i].slice(1);
         display.textContent = equation[i];
-        console.log(`equation: ${equation}`);
+        log();
         break;
       } else {
         equation[i] = `-${equation[i]}`;
         display.textContent = equation[i];
-        console.log(`equation: ${equation}`);
+        log();
         break;
       }
     
     // Delete last input value
     case 'Del':
+      scrubEquation();
       equation[i] = equation[i].substring(0, equation[i].length - 1);
       display.textContent = equation[i];
-      scrubEquation();
-      console.log(`equation: ${equation}`);
+      log();
       break;
     
     // Clear everything
@@ -74,18 +74,17 @@ document.getElementById('buttons').addEventListener('click', (e) => {
       equation = ['', '', ''];
       display.textContent = '';
       i = 0;
-      console.log(`equation: ${equation}`);
+      log();
       break;
 
     // Evaluations
     case '=':
-      let strEquation = `(${equation[0]})${equation[1]}(${equation[2]})`;
-      console.log(`strEquation = ${strEquation}`);
-      equation[0] = `${eval(strEquation)}`;
+      let equationStr = `(${equation[0]})${equation[1]}(${equation[2]})`;
+      equation[0] = `${eval(equationStr)}`;
       display.textContent = equation[0];
-      console.log(`i = ${i}`);
       i = 0;
-      console.log(`equation: ${equation}, and typeof: ${typeof equation[0]}`);
+      console.log(`equationStr = ${equationStr}`);
+      log();
       break;
     
   }
@@ -97,4 +96,9 @@ function scrubEquation() {
     equation[1] = '';
     equation[2] = '';
   }
+}
+
+// Function that logs equation
+function log() {
+  console.log(`equation: ${equation}`);
 }
