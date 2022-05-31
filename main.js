@@ -3,10 +3,10 @@ let equation = ['', '', ''];
 // Variable to track where in the computation to insert inputs
 let i = 0;
 
+// Event listener
 document.getElementById('buttons').addEventListener('click', (e) => {
   const display = document.getElementById('display');
   const input = e.target.innerHTML;
-  
   switch (input) {
     
     // Numbers
@@ -69,7 +69,7 @@ document.getElementById('buttons').addEventListener('click', (e) => {
       log();
       break;
     
-    // Clear everything
+    // Clear equation & display, resets i
     case 'C':
       equation = ['', '', ''];
       display.textContent = '';
@@ -86,11 +86,12 @@ document.getElementById('buttons').addEventListener('click', (e) => {
       console.log(`equationStr = ${equationStr}`);
       log();
       break;
-    
   }
 });
 
-// Function that clears the equation array of operator and the second operand
+// Functions
+
+// Clears the equation array of operator and the second operand
 function scrubEquation() {
   if (i === 0 && equation[2]) {
     equation[1] = '';
@@ -98,7 +99,7 @@ function scrubEquation() {
   }
 }
 
-// Function that logs equation
+// Logs equation
 function log() {
   console.log(`equation: ${equation}`);
 }
