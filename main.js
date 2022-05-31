@@ -1,6 +1,6 @@
 // Stores values as strings for computations: num, operator, num
 let equation = ['', '', ''];
-// Variable to track where in the computation to insert inputs
+// Variable to track where in the equation array to insert inputs
 let i = 0;
 
 // Event listener
@@ -19,6 +19,7 @@ document.getElementById('buttons').addEventListener('click', (e) => {
     
     // Decimals
     case '.':
+      scrubEquation();
       const decimal = /\./;
       if (equation[i].length === 0) {
         equation[i] = '0.';
@@ -83,7 +84,6 @@ document.getElementById('buttons').addEventListener('click', (e) => {
       equation[0] = `${eval(equationStr)}`;
       display.textContent = equation[0];
       i = 0;
-      console.log(`equationStr = ${equationStr}`);
       log();
       break;
   }
